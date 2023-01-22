@@ -27,7 +27,7 @@ public class PlayerAnimator : MonoBehaviour
         setAnimation();
 
         rotateSprite();
-    }
+    } 
 
     private void setAnimation()
     {

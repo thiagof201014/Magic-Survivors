@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
         movement = movement * speed;
 
         rb.velocity = movement;
-    }
+    } 
 
     public float getMoveDirectionX()
     {
