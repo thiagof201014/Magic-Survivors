@@ -7,38 +7,24 @@ public class Movement : MonoBehaviour
     private float speed = 5;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
-    private Transform transform;
     
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        transform = GetComponent<Transform>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        setDirection();
         input_management();
     }
 
     private void FixedUpdate() 
     {
         move();
-    }
-
-    private void setDirection()
-    {
-        if(moveDirection.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
     }
 
     void input_management()
@@ -51,7 +37,11 @@ public class Movement : MonoBehaviour
 
     void move()
     {
-        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        Vector2 movement = new Vector2(moveDirection.x, moveDirection.y);
+        movement.Normalize();
+        movement = movement * speed;
+
+        rb.velocity = movement;
     }
 
     public float getMoveDirectionX()
